@@ -1,0 +1,2 @@
+rootProject.name = "JL Best Practices"
+include ':app'
