@@ -1,4 +1,4 @@
-package com.johnnylambada.best
+package app
 
 import org.junit.Test
 
