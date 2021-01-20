@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // binding MUST be mentioned because contentView is lazy
         Snackbar.make(binding.root,"Welcome!",Snackbar.LENGTH_SHORT).show()
-        binding.root.setOnClickListener { startActivity(RvRowsActivity.intent(this)) }
+        binding.rows.setOnClickListener { startActivity(RvRowsActivity.intent(this)) }
+        binding.cells.setOnClickListener { startActivity(RvCellsActivity.intent(this)) }
     }
 }

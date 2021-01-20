@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RvRowsActivity"/>
+        <activity android:name=".RvCellsActivity"/>
     </application>
 
 </manifest>

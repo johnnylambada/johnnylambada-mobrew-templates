@@ -2,27 +2,25 @@ package app
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.RectShape
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import app.data.Winery
-import app.databinding.ActivityRvRowsBinding
-import app.databinding.RowRvRowsImageBinding
-import app.databinding.RowRvRowsTextBinding
+import app.databinding.ActivityRvCellsBinding
+import app.databinding.RowRvCellsImageBinding
+import app.databinding.RowRvCellsTextBinding
 import app.util.contentView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlin.streams.toList
 
-class RvRowsActivity : AppCompatActivity() {
-    private val binding by contentView<RvRowsActivity, ActivityRvRowsBinding>(R.layout.activity_rv_rows)
+class RvCellsActivity : AppCompatActivity() {
+    private val binding by contentView<RvCellsActivity, ActivityRvCellsBinding>(R.layout.activity_rv_cells)
 
     sealed class Item(val winery: Winery) {
         class Image(w: Winery ): Item(w)
@@ -33,7 +31,7 @@ class RvRowsActivity : AppCompatActivity() {
         val picasso = Picasso.get()
         abstract class UpdatableViewHolder(view: View) : RecyclerView.ViewHolder(view) { abstract fun update(item: Item) }
         class ImageViewHolder(view: View) : UpdatableViewHolder(view) {
-            val binding = DataBindingUtil.bind<RowRvRowsImageBinding>(view)!!
+            val binding = DataBindingUtil.bind<RowRvCellsImageBinding>(view)!!
             override fun update(item: Item) {
                 val winery = item.winery
                 with(binding) {
@@ -47,7 +45,7 @@ class RvRowsActivity : AppCompatActivity() {
             }
         }
         class TextViewHolder(view: View) : UpdatableViewHolder(view) {
-            val binding = DataBindingUtil.bind<RowRvRowsTextBinding>(view)!!
+            val binding = DataBindingUtil.bind<RowRvCellsTextBinding>(view)!!
             override fun update(item: Item) {
                 binding.title.text = item.winery.name
                 binding.subtitle.text = item.winery.phone
@@ -64,15 +62,15 @@ class RvRowsActivity : AppCompatActivity() {
             override fun onBindViewHolder(holder: UpdatableViewHolder, position: Int) = holder.update(items[position])
             override fun getItemViewType(position: Int): Int {
                 return when (items[position]){
-                    is Item.Image -> R.layout.row_rv_rows_image
-                    is Item.Text -> R.layout.row_rv_rows_text
+                    is Item.Image -> R.layout.row_rv_cells_image
+                    is Item.Text -> R.layout.row_rv_cells_text
                 }
             }
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpdatableViewHolder {
                 val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
                 return when (viewType) {
-                    R.layout.row_rv_rows_image-> ImageViewHolder(view)
-                    R.layout.row_rv_rows_text -> TextViewHolder(view)
+                    R.layout.row_rv_cells_image-> ImageViewHolder(view)
+                    R.layout.row_rv_cells_text -> TextViewHolder(view)
                     else->throw IllegalStateException("invalid type")
                 }
             }
@@ -81,14 +79,22 @@ class RvRowsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.rows.adapter = adapter
-        binding.rows.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL).also { deco ->
-            with (ShapeDrawable(RectShape())){
-                intrinsicHeight = (resources.displayMetrics.density * 8).toInt()
-                alpha = 0
-                deco.setDrawable(this)
+        binding.cells.adapter = adapter
+        binding.cells.addItemDecoration(object: RecyclerView.ItemDecoration(){
+            val px = (resources.displayMetrics.density * 8).toInt()
+            val spanCount = 2
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                val index = parent.getChildLayoutPosition(view)
+                val isLeft = (index % spanCount == 0)
+                outRect.set(
+                    if (isLeft) px else px/2,
+                    0,
+                    if (isLeft) px/2 else px,
+                    px
+                )
             }
         })
+
         adapter.update(
             Winery.data
                 .stream()
@@ -98,6 +104,6 @@ class RvRowsActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun intent(ctx: Context) = Intent(ctx, RvRowsActivity::class.java)
+        fun intent(ctx: Context) = Intent(ctx, RvCellsActivity::class.java)
     }
 }
