@@ -1,0 +1,7 @@
+<templateSet group="jldep">
+  <template name="jldep-picasso" value="    implementation &quot;com.squareup.picasso:picasso:2.71828&quot; // https://github.com/square/picasso (android.permission.INTERNET)&#10;    implementation &quot;jp.wasabeef:picasso-transformations:2.4.0&quot; // https://github.com/wasabeef/picasso-transformations&#10;    // Picasso.get().load(urlNotNullOrEmpty).transform(ColorFilterTransformation(0x70000000)).into(view)" description="Add implementation for picasso" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="GROOVY" value="true" />
+    </context>
+  </template>
+</templateSet>
