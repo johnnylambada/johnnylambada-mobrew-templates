@@ -1,13 +1,13 @@
 package app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import app.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import app.databinding.MainActivityBinding
 import app.util.contentView
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
-    private val binding by contentView<MainActivity, ActivityMainBinding>(R.layout.activity_main)
+    private val binding by contentView<MainActivity, MainActivityBinding>(R.layout.main_activity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

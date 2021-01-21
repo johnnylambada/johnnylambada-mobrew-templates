@@ -11,16 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import app.data.Winery
-import app.databinding.ActivityRvCellsBinding
-import app.databinding.RowRvCellsImageBinding
-import app.databinding.RowRvCellsTextBinding
+import app.databinding.RvCellsActivityBinding
+import app.databinding.RvCellsCellImageBinding
+import app.databinding.RvCellsCellTextBinding
 import app.util.contentView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlin.streams.toList
 
 class RvCellsActivity : AppCompatActivity() {
-    private val binding by contentView<RvCellsActivity, ActivityRvCellsBinding>(R.layout.activity_rv_cells)
+    private val binding by contentView<RvCellsActivity, RvCellsActivityBinding>(R.layout.rv_cells_activity)
 
     sealed class Item(val winery: Winery) {
         class Image(w: Winery ): Item(w)
@@ -31,7 +31,7 @@ class RvCellsActivity : AppCompatActivity() {
         val picasso = Picasso.get()
         abstract class UpdatableViewHolder(view: View) : RecyclerView.ViewHolder(view) { abstract fun update(item: Item) }
         class ImageViewHolder(view: View) : UpdatableViewHolder(view) {
-            val binding = DataBindingUtil.bind<RowRvCellsImageBinding>(view)!!
+            val binding = DataBindingUtil.bind<RvCellsCellImageBinding>(view)!!
             override fun update(item: Item) {
                 val winery = item.winery
                 with(binding) {
@@ -45,7 +45,7 @@ class RvCellsActivity : AppCompatActivity() {
             }
         }
         class TextViewHolder(view: View) : UpdatableViewHolder(view) {
-            val binding = DataBindingUtil.bind<RowRvCellsTextBinding>(view)!!
+            val binding = DataBindingUtil.bind<RvCellsCellTextBinding>(view)!!
             override fun update(item: Item) {
                 binding.title.text = item.winery.name
                 binding.subtitle.text = item.winery.phone
@@ -62,15 +62,15 @@ class RvCellsActivity : AppCompatActivity() {
             override fun onBindViewHolder(holder: UpdatableViewHolder, position: Int) = holder.update(items[position])
             override fun getItemViewType(position: Int): Int {
                 return when (items[position]){
-                    is Item.Image -> R.layout.row_rv_cells_image
-                    is Item.Text -> R.layout.row_rv_cells_text
+                    is Item.Image -> R.layout.rv_cells_cell_image
+                    is Item.Text -> R.layout.rv_cells_cell_text
                 }
             }
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpdatableViewHolder {
                 val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
                 return when (viewType) {
-                    R.layout.row_rv_cells_image-> ImageViewHolder(view)
-                    R.layout.row_rv_cells_text -> TextViewHolder(view)
+                    R.layout.rv_cells_cell_image-> ImageViewHolder(view)
+                    R.layout.rv_cells_cell_text -> TextViewHolder(view)
                     else->throw IllegalStateException("invalid type")
                 }
             }
