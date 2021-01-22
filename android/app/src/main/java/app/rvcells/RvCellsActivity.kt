@@ -1,4 +1,4 @@
-package app
+package app.rvcells
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import app.R
 import app.data.Winery
 import app.databinding.RvCellsActivityBinding
 import app.databinding.RvCellsCellImageBinding
@@ -69,7 +70,7 @@ class RvCellsActivity : AppCompatActivity() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpdatableViewHolder {
                 val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
                 return when (viewType) {
-                    R.layout.rv_cells_cell_image-> ImageViewHolder(view)
+                    R.layout.rv_cells_cell_image -> ImageViewHolder(view)
                     R.layout.rv_cells_cell_text -> TextViewHolder(view)
                     else->throw IllegalStateException("invalid type")
                 }

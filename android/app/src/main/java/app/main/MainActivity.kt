@@ -1,7 +1,10 @@
-package app
+package app.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import app.R
+import app.rvcells.RvCellsActivity
+import app.rvrows.RvRowsActivity
 import app.databinding.MainActivityBinding
 import app.util.contentView
 import com.google.android.material.snackbar.Snackbar
