@@ -1,1 +1,1 @@
-# johnnylambada-android-best-practices
+# johnnylambada-mobrew-templates
