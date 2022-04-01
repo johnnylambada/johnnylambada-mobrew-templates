@@ -2,7 +2,7 @@ package app.data
 
 data class Winery(val name: String, val addr: String, val phone: String, val url: String, val logo: String?=null) {
     companion object {
-        val data: List<Winery> = listOf<Winery>(
+        val data: List<Winery> = listOf(
                 Winery("1968 Cellars", "40134 Calle Cabernet\nTemecula CA 92591", "909-573-5045", "http://www.1968cellars.com/","https://www.1968cellars.com/assets/logo/webtab_logo.png"),
                 Winery("Akash Winery","39730 Calle Contento\nTemecula CA 92590","951-888-1393","https://www.akashwinery.com/","https://static1.squarespace.com/static/58a78d7a3e00be9b7ebaf687/t/5bf0528c4ae237221b0e58e1/1542476434672/green1.png"),
                 Winery("Alex's Red Barn Winery","39820 Calle Contento\nTemecula CA - 92591","951-693-3201","http://www.redbarnwine.com/","https://www.redbarnwine.com/wp-content/uploads/2020/11/cropped-1YrKrc4b2nxF-192x192.png"),
