@@ -1,7 +1,0 @@
-<templateSet group="jlkt">
-  <template name="jlkt-contentView-class" value="import android.app.Activity&#10;import androidx.annotation.LayoutRes&#10;import androidx.databinding.DataBindingUtil&#10;import androidx.databinding.ViewDataBinding&#10;import kotlin.reflect.KProperty&#10;&#10;/**&#10; * Lazily inflate a data binding layout, call [Activity.setContentView] and return the binding.&#10; * Use it like this:&#10; * private val binding by contentView&lt;TheActivity, ActivityTheBinding&gt;(R.layout.activity_the)&#10; * Note: binding must be mentioned in onCreate or it won't work&#10; */&#10;class ContentViewBinder&lt;in R : Activity, out T : ViewDataBinding&gt;(@LayoutRes private val layout: Int) {&#10;    private var binding: T? = null&#10;    operator fun getValue(activity: R, property: KProperty&lt;*&gt;): T {&#10;        if (binding == null) {&#10;            binding = DataBindingUtil.setContentView(activity, layout)&#10;        }&#10;        return binding!!&#10;    }&#10;}&#10;fun &lt;R : Activity, T : ViewDataBinding&gt; contentView(@LayoutRes layout: Int): ContentViewBinder&lt;R, T&gt; = ContentViewBinder(layout)&#10;" description="ContentViewBinder used for lazyily binding layouts" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="KOTLIN_TOPLEVEL" value="true" />
-    </context>
-  </template>
-</templateSet>
