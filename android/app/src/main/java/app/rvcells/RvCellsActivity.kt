@@ -18,7 +18,6 @@ import app.databinding.RvCellsCellTextBinding
 import app.util.contentView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation
-import kotlin.streams.toList
 
 class RvCellsActivity : AppCompatActivity() {
     private val binding by contentView<RvCellsActivity, RvCellsActivityBinding>(R.layout.rv_cells_activity)
@@ -98,9 +97,7 @@ class RvCellsActivity : AppCompatActivity() {
 
         adapter.update(
             Winery.data
-                .stream()
                 .map { if (it.name.length%2==0) Item.Image(it) else Item.Text(it) }
-                .toList()
         )
     }
 
