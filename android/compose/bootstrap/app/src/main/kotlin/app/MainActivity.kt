@@ -1,4 +1,4 @@
-package com.example.bootstrap
+package app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

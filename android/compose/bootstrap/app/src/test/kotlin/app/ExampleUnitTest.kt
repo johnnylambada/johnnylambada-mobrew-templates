@@ -1,4 +1,4 @@
-package com.example.bootstrap
+package app
 
 import org.junit.Test
 
