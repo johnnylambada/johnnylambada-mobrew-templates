@@ -1,0 +1,11 @@
+<resources>
+    <string name="add_soup">Add Soup</string>
+    <string name="app_name">Soup</string>
+    <string name="category_creamy">Creamy</string>
+    <string name="category_watery">Watery</string>
+    <string name="tomato">Tomato</string>
+    <string name="minestrone">MineStrone</string>
+    <string name="my_soups">My Soups</string>
+    <string name="split_pea">Split Pea</string>
+    <string name="watery">Watery</string>
+</resources>
