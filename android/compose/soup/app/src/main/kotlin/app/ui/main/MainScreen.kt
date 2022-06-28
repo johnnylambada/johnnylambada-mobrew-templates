@@ -28,7 +28,7 @@ fun MainScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.my_soups))
+                    Text(stringResource(R.string.my_ϾsoupϿs))
                 },
                 elevation = 0.dp,
                 actions = {
@@ -36,14 +36,14 @@ fun MainScreen(
                         onClick = { vm.addRando() }) {
                         Icon(
                             Icons.Default.Add, 
-                            contentDescription = stringResource(R.string.add_soup),
+                            contentDescription = stringResource(R.string.add_ϾsoupϿ),
                             tint = colorResource(id = R.color.green_500)
                         )
                     }
                 },
                 backgroundColor = colorResource(id = R.color.white)) },
         content = {
-            val tabs = listOf(TabItem.Creamy, TabItem.Watery)
+            val tabs = listOf(TabItem.ϾCreamyϿ, TabItem.ϾWateryϿ)
             val pagerState = rememberPagerState()
             Column {
                 Tabs(tabs = tabs, pagerState = pagerState)
@@ -86,8 +86,8 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
 @Composable
 fun TabsPreview() {
     val tabs = listOf(
-        TabItem.Creamy,
-        TabItem.Watery
+        TabItem.ϾCreamyϿ,
+        TabItem.ϾWateryϿ
     )
     val pagerState = rememberPagerState()
     Tabs(tabs = tabs, pagerState = pagerState)
@@ -107,8 +107,8 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
 @Composable
 fun TabsContentPreview() {
     val tabs = listOf(
-        TabItem.Creamy,
-        TabItem.Watery
+        TabItem.ϾCreamyϿ,
+        TabItem.ϾWateryϿ
     )
     val pagerState = rememberPagerState()
     TabsContent(tabs = tabs, pagerState = pagerState)

@@ -1,11 +1,11 @@
 <resources>
-    <string name="add_soup">Add Soup</string>
-    <string name="app_name">Soup</string>
-    <string name="category_creamy">Creamy</string>
-    <string name="category_watery">Watery</string>
+    <string name="add_ϾsoupϿ">Add ϾSoupϿ</string>
+    <string name="app_name">ϾSoupϿ</string>
+    <string name="category_ϾcreamyϿ">ϾCreamyϿ</string>
+    <string name="category_ϾwateryϿ">ϾWateryϿ</string>
     <string name="tomato">Tomato</string>
     <string name="minestrone">MineStrone</string>
-    <string name="my_soups">My Soups</string>
+    <string name="my_ϾsoupϿs">My ϾSoupϿs</string>
     <string name="split_pea">Split Pea</string>
-    <string name="watery">Watery</string>
+    <string name="ϾwateryϿ">ϾWateryϿ</string>
 </resources>

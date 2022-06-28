@@ -2,8 +2,8 @@ package app.domain.model
 
 import java.time.LocalDateTime
 
-data class SoupSighting(
+data class ϾSoupϿSighting(
     val date: LocalDateTime,
-    val type: SoupType,
+    val type: ϾSoupϿType,
     val temperature: Int
 )

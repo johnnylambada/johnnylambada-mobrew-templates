@@ -21,13 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.R
-import app.domain.model.SoupSighting
-import app.domain.model.SoupCategory
+import app.domain.model.ϾSoupϿSighting
+import app.domain.model.ϾSoupϿCategory
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun SoupListScreen(
-    category: SoupCategory,
+fun ϾSoupϿListScreen(
+    category: ϾSoupϿCategory,
     vm: MainViewModel = viewModel()
 ) {
     val state by vm.state.collectAsState()
@@ -46,7 +46,7 @@ fun SoupListScreen(
                 .fillMaxWidth(),
             reverseLayout = true
         ) {
-            val list = state.soupSightings
+            val list = state.ϾsoupϿSightings
                 .filter { it.type.category == category }
             items(list) { SightingRow(it) }
         }
@@ -54,7 +54,7 @@ fun SoupListScreen(
 }
 
 @Composable
-fun SightingRow(soupSighting: SoupSighting) {
+fun SightingRow(ϾsoupϿSighting: ϾSoupϿSighting) {
     val dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy @ h:mm a")
     Column {
         Row(modifier = Modifier,
@@ -69,9 +69,9 @@ fun SightingRow(soupSighting: SoupSighting) {
 //                      .scale(0.75f)
                         .padding(10.dp),
                     painter = painterResource(
-                        id = soupSighting.type.image,
+                        id = ϾsoupϿSighting.type.image,
                     ),
-                    contentDescription = stringResource(id = soupSighting.type.description),
+                    contentDescription = stringResource(id = ϾsoupϿSighting.type.description),
 //                  colorFilter = ColorFilter.tint(colorResource(id = R.color.green_500))
                 )
             }
@@ -79,11 +79,11 @@ fun SightingRow(soupSighting: SoupSighting) {
                 .padding(0.dp, 10.dp)
             ) {
                 Text(
-                    text = soupSighting.date.format(dateFormatter),
+                    text = ϾsoupϿSighting.date.format(dateFormatter),
                     fontSize = 16.sp
                 )
                 Text(
-                    text = "${soupSighting.temperature}°F · ${stringResource(id = soupSighting.type.description)}",
+                    text = "${ϾsoupϿSighting.temperature}°F · ${stringResource(id = ϾsoupϿSighting.type.description)}",
                     fontSize = 14.sp
                 )
 
