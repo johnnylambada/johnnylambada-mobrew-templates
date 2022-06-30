@@ -8,10 +8,11 @@ android {
 
     defaultConfig {
         applicationId = "com.example.bootstrap"
-        minSdk = 26
-        targetSdk = 31
+        minSdk = (findProperty("android.minSdk") as String).toInt()
+        targetSdk = (findProperty("android.targetSdk") as String).toInt()
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,6 +42,16 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+}
+
+configurations {
+    all {
+        exclude( group = "org.json", module = "json")
     }
 }
 
