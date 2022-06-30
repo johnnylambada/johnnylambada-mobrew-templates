@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    kotlin("android")
 }
 
 android {
@@ -46,29 +46,38 @@ android {
 
 dependencies {
 
-    implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.activity:activity-ktx:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("androidx.compose.foundation:foundation:1.1.1")
-    implementation("androidx.compose.material:material:1.1.1")
-    implementation("androidx.compose.material:material-icons-extended:1.1.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
-    implementation("androidx.compose.ui:ui-tooling:1.1.1")
-    implementation("androidx.compose.ui:ui:1.1.1")
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
-    implementation("com.google.accompanist:accompanist-pager:0.23.1")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.23.1")
-    implementation("com.google.android.material:material:1.6.1")
-    implementation("com.google.code.gson:gson:2.8.7")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.activity:activity-compose:${ver("ComposeActivity")}")
+    implementation("androidx.activity:activity-ktx:${ver("ActivityKtx")}")
+    implementation("androidx.appcompat:appcompat:${ver("Appcompat")}")
+    implementation("androidx.compose.foundation:foundation:${ver("ComposeFoundation")}")
+    implementation("androidx.compose.material:material:${ver("ComposeMaterial")}")
+    implementation("androidx.compose.material:material-icons-extended:${ver("ComposeMaterial")}")
+    implementation("androidx.compose.ui:ui-tooling-preview:${ver("ComposeUi")}")
+    implementation("androidx.compose.ui:ui-tooling:${ver("ComposeUi")}")
+    implementation("androidx.compose.ui:ui:${ver("ComposeUi")}")
+    implementation("androidx.core:core-ktx:${ver("CoreKtx")}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${ver("ComposeLifecycleViewModel")}")
+    implementation("com.google.accompanist:accompanist-pager:${ver("accompanistPager")}")
+    implementation("com.google.accompanist:accompanist-pager-indicators:${ver("accompanistPager")}")
+    implementation("com.google.android.material:material:${ver("material")}")
+    implementation("com.google.code.gson:gson:${ver("gson")}")
+    implementation("com.squareup.retrofit2:converter-gson:${ver("retrofit2")}")
+    implementation("com.squareup.retrofit2:retrofit:${ver("retrofit2")}")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:${ver("ComposeUi")}")
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:${ver("junit")}")
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
+    androidTestImplementation("androidx.test.ext:junit:${ver("TestJunit")}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${ver("TestEspressoCore")}") {
+        exclude("com.android.support", "support-annotations")
+    }
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${ver("ComposeJunit4")}")
+}
+
+fun ver(prop: String): Any {
+    return findProperty(prop)
+        ?: findProperty("ver.${prop}")
+        ?: findProperty("ver.a6x${prop}")
+        ?: throw StopExecutionException("${prop} not in gradle.properties")
 }
