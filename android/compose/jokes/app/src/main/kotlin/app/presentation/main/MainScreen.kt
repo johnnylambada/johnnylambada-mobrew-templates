@@ -1,4 +1,4 @@
-package app.ui.main
+package app.presentation.main
 
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text

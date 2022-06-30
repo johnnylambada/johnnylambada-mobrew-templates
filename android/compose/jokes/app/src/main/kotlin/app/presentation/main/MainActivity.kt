@@ -1,4 +1,4 @@
-package app.ui.main
+package app.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
