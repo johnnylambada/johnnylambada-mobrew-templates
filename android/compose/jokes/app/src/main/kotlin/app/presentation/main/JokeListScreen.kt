@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.domain.model.Joke
+import app.domain.model.JokeOneLiner
+import app.domain.model.JokeTwoLiner
 
 @Composable
 fun JokeListScreen(
@@ -31,13 +33,17 @@ fun JokeListScreen(
             .fillMaxSize()
             .background(colorResource(id = android.R.color.white))
     ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth(),
-            reverseLayout = true
-        ) {
-            val list = state.jokeList
-            items(list) { JokeRow(it) }
+        if (state.isLoading) {
+            Text("Loading")
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                reverseLayout = true
+            ) {
+                val list = state.jokeList
+                items(list) { JokeRow(it) }
+            }
         }
     }
 }
@@ -47,16 +53,27 @@ fun JokeRow(joke: Joke) {
     Column(
         modifier = Modifier.padding(8.dp,0.dp,8.dp,0.dp)
     ) {
-        Text(
-            modifier = Modifier.padding(0.dp,8.dp,0.dp,0.dp),
-            text = joke.setup,
-            fontSize = 16.sp
-        )
-        Text(
-            modifier = Modifier.padding(0.dp,0.dp,0.dp,8.dp),
-            text = joke.delivery,
-            fontSize = 14.sp
-        )
+        when(joke) {
+            is JokeOneLiner -> {
+                Text(
+                    modifier = Modifier.padding(0.dp,8.dp,0.dp,8.dp),
+                    text = joke.joke,
+                    fontSize = 18.sp
+                )
+            }
+            is JokeTwoLiner -> {
+                Text(
+                    modifier = Modifier.padding(0.dp,8.dp,0.dp,0.dp),
+                    text = joke.setup,
+                    fontSize = 16.sp
+                )
+                Text(
+                    modifier = Modifier.padding(0.dp,0.dp,0.dp,8.dp),
+                    text = joke.delivery,
+                    fontSize = 14.sp
+                )
+            }
+        }
         Row(modifier = Modifier
             .fillMaxWidth()
             .height(1.dp)

@@ -1,7 +1,7 @@
 package app.di
 
-import app.data.joke.JokeMemoryCache
 import app.data.joke.JokeRepository
+import app.data.joke.JokeRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,11 +14,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun providesJokeMemoryCache() = JokeMemoryCache()
-
-    @Singleton
-    @Provides
     fun providesJokeRepository(
-        jokeMemoryCache: JokeMemoryCache
-    ) = JokeRepository(jokeMemoryCache)
+        jokeRetrofit: JokeRetrofit
+    ) = JokeRepository(jokeRetrofit)
 }

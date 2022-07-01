@@ -1,7 +1,11 @@
 package app.data.joke
 
+import app.domain.model.Joke
+
 class JokeRepository(
-    private val jokeMemoryCache: JokeMemoryCache
+    private val jokeRetrofit: JokeRetrofit
 ) {
-    val jokes get() = jokeMemoryCache.jokes
+    suspend fun getJokes(): List<Joke> {
+        return jokeRetrofit.jokes().toEntity()
+    }
 }
