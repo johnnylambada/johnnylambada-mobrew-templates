@@ -8,13 +8,13 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import app.R
 
 @Preview
 @Composable
 fun MainScreen(
-    vm: MainViewModel = viewModel()
+    vm: MainViewModel = hiltViewModel()
 ) {
     Scaffold(
         topBar = {

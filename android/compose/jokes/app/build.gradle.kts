@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -41,7 +43,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     packagingOptions {
@@ -53,6 +55,14 @@ configurations {
     all {
         exclude( group = "org.json", module = "json")
     }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+hilt {
+    enableAggregatingTask = true
 }
 
 dependencies {
@@ -67,6 +77,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling:${ver("ComposeUi")}")
     implementation("androidx.compose.ui:ui:${ver("ComposeUi")}")
     implementation("androidx.core:core-ktx:${ver("CoreKtx")}")
+    implementation("androidx.hilt:hilt-navigation-compose:${ver("a6xHiltNavigationCompose")}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${ver("ComposeLifecycleViewModel")}")
     implementation("com.google.accompanist:accompanist-pager:${ver("accompanistPager")}")
     implementation("com.google.accompanist:accompanist-pager-indicators:${ver("accompanistPager")}")
@@ -74,6 +85,7 @@ dependencies {
     implementation("com.google.code.gson:gson:${ver("gson")}")
     implementation("com.squareup.retrofit2:converter-gson:${ver("retrofit2")}")
     implementation("com.squareup.retrofit2:retrofit:${ver("retrofit2")}")
+    implementation("com.google.dagger:hilt-android:${ver("daggerHilt")}")
 
     debugImplementation("androidx.compose.ui:ui-tooling:${ver("ComposeUi")}")
 
@@ -84,6 +96,8 @@ dependencies {
         exclude("com.android.support", "support-annotations")
     }
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${ver("ComposeJunit4")}")
+
+    kapt("com.google.dagger:hilt-android-compiler:${ver("daggerHilt")}")
 }
 
 fun ver(prop: String): Any {

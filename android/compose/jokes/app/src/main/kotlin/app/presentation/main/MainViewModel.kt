@@ -1,19 +1,22 @@
 package app.presentation.main
 
 import androidx.lifecycle.ViewModel
-import app.App
 import app.data.sighting.JokeRepository
 import app.domain.model.Joke
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
 data class JokeListViewState(
     val jokeList: List<Joke>
 )
 
-class MainViewModel: ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val jokeRepository: JokeRepository
+): ViewModel() {
 
-    val jokeRepository: JokeRepository by lazy { return@lazy App.app.jokeRepository }
     private val _state = MutableStateFlow(JokeListViewState(emptyList()))
     val state = _state.asStateFlow()
 
