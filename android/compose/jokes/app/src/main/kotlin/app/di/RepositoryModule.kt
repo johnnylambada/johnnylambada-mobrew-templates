@@ -1,7 +1,7 @@
 package app.di
 
-import app.data.sighting.JokeMemoryCache
-import app.data.sighting.JokeRepository
+import app.data.joke.JokeMemoryCache
+import app.data.joke.JokeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

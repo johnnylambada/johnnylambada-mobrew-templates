@@ -1,4 +1,4 @@
-package app.data.sighting
+package app.data.joke
 
 class JokeRepository(
     private val jokeMemoryCache: JokeMemoryCache

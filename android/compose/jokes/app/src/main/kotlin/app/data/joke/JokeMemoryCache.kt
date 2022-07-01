@@ -1,4 +1,4 @@
-package app.data.sighting
+package app.data.joke
 
 import app.domain.model.Joke
 

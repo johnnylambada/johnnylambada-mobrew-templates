@@ -1,7 +1,7 @@
 package app.presentation.main
 
 import androidx.lifecycle.ViewModel
-import app.data.sighting.JokeRepository
+import app.data.joke.JokeRepository
 import app.domain.model.Joke
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,8 +21,8 @@ class MainViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     fun update() {
-        val sightings = jokeRepository.jokes
-        _state.value = JokeListViewState(sightings.toList())
+        val jokes = jokeRepository.jokes
+        _state.value = JokeListViewState(jokes.toList())
     }
 
 }

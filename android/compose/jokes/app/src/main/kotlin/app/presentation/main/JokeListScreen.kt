@@ -37,13 +37,13 @@ fun JokeListScreen(
             reverseLayout = true
         ) {
             val list = state.jokeList
-            items(list) { SightingRow(it) }
+            items(list) { JokeRow(it) }
         }
     }
 }
 
 @Composable
-fun SightingRow(joke: Joke) {
+fun JokeRow(joke: Joke) {
     Column(
         modifier = Modifier.padding(8.dp,0.dp,8.dp,0.dp)
     ) {
